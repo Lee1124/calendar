@@ -9,6 +9,14 @@
 
 
 ======项目内部模块说明======
+#公用
+1、components/common/selectTime/selectTime.vue  --时间选择(开始与截止)
+2、components/common/inputSelect/inputSelect.vue  --高级搜索
+
+#私有
 1、components/login/login  --登录
-2、components/homePage/homePage  --登陆后默认的首页(包括侧边、头部导航栏、日历模块)
-3、components/homePage/calendar/  --日历
+2、components/homePage/homePage  --登陆后默认的首页(包括侧边、头部导航栏)
+3、components/calendar/calendar --日历
+4、components/orderManage/orderManage --订单管理
+4、components/orderManage/orderManage/orderManage-ourShop --本店订单
+

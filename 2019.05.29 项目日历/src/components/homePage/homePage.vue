@@ -24,8 +24,9 @@
     },
     methods: myMethods,
     created() {
-      console.log($(window).width())
-      console.log($(window).height())
+      document.title='首页-摄像';
+      // console.log($(window).width())
+      // console.log($(window).height())
     },
   }
 </script>
@@ -61,8 +62,9 @@
     background-color: #F6F6F6;
     color: #333;
     text-align: center;
-    padding: 3.5% 7%;
-    min-width: 1150px;
+    /*padding: 3.5% 7%;*/
+    padding: 0;
+    /*min-width: 1150px;*/
   }
 
   >>> .el-container {

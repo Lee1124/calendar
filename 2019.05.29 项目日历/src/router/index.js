@@ -33,8 +33,8 @@ Vue.use(Router);
 export default new Router({
   routes: [
     //总合子路由
-    ...homePageRouter,
     ...loginRouter,
+    ...homePageRouter,
   ]
 })
 

@@ -51,10 +51,19 @@
   padding: 0;
   -webkit-tap-highlight-color: rgba(255, 0, 0, 0) !important;
   list-style: none;
+  outline: none;
 }
 
 html, body {
   height: 100%;
+}
+
+/*设置文本不能被选中*/
+.noSelect {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /*左浮动*/
@@ -88,10 +97,12 @@ html, body {
   color: #5996F8 !important;
 }
 
-.monthValuePicker {
-  top: 240px!important;
+.monthValuePicker{
+  margin-top: 20px!important;
 }
 
 .monthValuePicker .el-month-table td .cell:hover, .el-month-table td.current:not(.disabled) .cell {
   color: #5996F8;
 }
+
+

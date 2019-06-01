@@ -1,8 +1,23 @@
-import Vue from 'vue'
-import App from './App'
-import router from './router'
+import Vue from 'vue';
+import App from './App';
+import router from './router';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+
+
+//全局前置导航守卫
+router.beforeEach((to, from, next) => { //全局前置守卫按照创建顺序调用
+  if (to.path == '/login') {
+    next();
+  } else {
+    if (sessionStorage.getItem('login')) {
+      next();
+    } else {
+      next({path: '/login'});
+    }
+  }
+});
+
 
 // import preview from 'vue-photo-preview'
 // import 'vue-photo-preview/dist/skin.css'
@@ -14,10 +29,10 @@ Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 // Axios.defaults.baseURL = 'https://xilai99.com/';
-Vue.prototype.$axios = Axios;
+// Vue.prototype.$axios = Axios;
 // Vue.prototype.$store = store;
 
-Vue.prototype.request = request;//封装axios请求
+Vue.prototype.$Axios = request;//封装axios请求
 
 //自定义指令1
 Vue.directive('marginRight', {
@@ -31,10 +46,17 @@ Vue.directive('myHeight', {
     el.style.height = parseInt(binding.value) + 'px'
   }
 });
+//自定义指令3
+Vue.directive('focus', {
+  inserted(el,) {
+    el.focus();
+  }
+});
 
 //全局注册组件:
-import dropSelect from './components/homePage/calendar/dropSelect'
-Vue.component('dropSelect',dropSelect);
+import dropSelect from './components/calendar/dropSelect'
+
+Vue.component('dropSelect', dropSelect);
 
 
 // //自定义滚动事件指令
@@ -58,10 +80,28 @@ var vm = new Vue({
 });
 
 /**
+ *localStorage失效时间
+ * @hour 设置失效时间  单位 小时
+ */
+function sessionStorageLose(hour) {
+  //判断登录是否过期
+  let loginTime = new Date(sessionStorage.getItem('loginTime'));
+  let nowTime = new Date();
+  let intervalHour = getIntervalHour(loginTime, nowTime);
+  if (intervalHour >= hour) {
+    alert('登陆过期，请重新登陆');
+    sessionStorage.removeItem('login');
+    sessionStorage.removeItem('loginTime');
+    vm.$router.push({path:'/login'});
+  }
+}
+
+/**
  *封装axios
  * @param 传进的method、url、data等对象
  */
 function request(param) {
+  sessionStorageLose(6);//判断是否登陆过期
   let method = param.method;
   let url = param.url;
   let dataObj = param.data;
@@ -103,5 +143,27 @@ function request(param) {
     });
   }
 }
+
+/*封装请求调用方式*/
+// this.request({
+//   method:'POST',
+//   url:url,
+//   data:data,
+//   success(res){
+//     console.log(res)
+//   },
+//   // error(err){
+//   //   console.log(err)
+//   // }
+// });*/
+
+
+/**
+ * 设置localStorage失效时间
+ *
+ */
+
+
+
 
 
