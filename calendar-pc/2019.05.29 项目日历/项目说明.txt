@@ -1,0 +1,22 @@
+项目说明：
+
+======项目外部架构说明=======
+1、static/css 公用css资源
+2、static/js  公用JS资源
+2、static/js/main.js  公用JS文件 一般放封装函数
+3、static/img 图片资源
+4、static/lib 第三方文件
+
+
+======项目内部模块说明======
+#公用
+1、components/common/selectTime/selectTime.vue  --时间选择(开始与截止)
+2、components/common/inputSelect/inputSelect.vue  --高级搜索
+
+#私有
+1、components/login/login  --登录
+2、components/homePage/homePage  --登陆后默认的首页(包括侧边、头部导航栏)
+3、components/calendar/calendar --日历
+4、components/orderManage/orderManage --订单管理
+4、components/orderManage/orderManage/orderManage-ourShop --本店订单
+
